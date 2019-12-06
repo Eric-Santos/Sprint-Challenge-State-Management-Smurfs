@@ -1,38 +1,55 @@
 import {
   SMURFDATA_LOAD_START,
   SMURFDATA_LOAD_FAILURE,
-  SMURFDATA_LOAD_SUCCESS
+  SMURFDATA_LOAD_SUCCESS,
+  ADD_SMURF,
+  DELETE_SMURF
 } from '../actions';
 
-//unable to use {object} here, throws error
 const initialState = {
+  smurfs: [
+    {
+      name: '',
+      age: '',
+      height: '',
+      id: ''
+    }
+  ],
   isLoading: false,
-  name: '',
-  age: [],
-  height: [],
-  id: []
+  error: ''
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SMURFDATA_LOAD_START:
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case SMURFDATA_LOAD_SUCCESS:
       return {
         ...state,
-        name: { ...state.name },
-        age: { ...state.age },
-        height: { ...state.height },
-        id: { ...state.id },
-        isLoading: false
+        isLoading: false,
+        smurf: action.payload
       };
     case SMURFDATA_LOAD_FAILURE:
       return {
         ...state,
-        error: action.payload,
-        isLoading: false
+        isLoading: false,
+        error: action.payload
+      };
+    case ADD_SMURF:
+      return {
+        ...state,
+        smurfs: action.payload,
+        error: ''
+      };
+    case DELETE_SMURF:
+      return {
+        ...state,
+        smurfs: action.payload,
+        isLoading: false,
+        error: ''
       };
     default:
       return state;
