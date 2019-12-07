@@ -8,6 +8,7 @@ export const DELETE_SMURF = 'DELETE_SMURF';
 
 export function FetchSmurf() {
   return dispatch => {
+    dispatch({ type: SMURFDATA_LOAD_START });
     axios
       .get('http://localhost:3333/smurfs')
       .then(res => {

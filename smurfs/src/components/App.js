@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { FetchSmurf, AddSmurf } from '../actions/index';
+import { FetchSmurf, AddSmurf, DeleteSmurf } from '../actions/index';
 
 import SmurfForm from './SmurfForm';
 import SmurfList from './SmurfList';
@@ -32,4 +32,6 @@ const mapStateToProps = state => {
     error: state.error
   };
 };
-export default connect(mapStateToProps, { FetchSmurf, AddSmurf })(App);
+export default connect(mapStateToProps, { FetchSmurf, AddSmurf, DeleteSmurf })(
+  App
+);

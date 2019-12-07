@@ -6,7 +6,7 @@ import {
   DELETE_SMURF
 } from '../actions';
 
-const initialState = {
+export const initialState = {
   smurfs: [
     {
       name: '',
@@ -19,18 +19,20 @@ const initialState = {
   error: ''
 };
 
-const reducer = (state = initialState, action) => {
+export function reducer(state = initialState, action) {
   switch (action.type) {
     case SMURFDATA_LOAD_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
     case SMURFDATA_LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        smurf: action.payload
+        smurf: action.payload,
+        error: ''
       };
     case SMURFDATA_LOAD_FAILURE:
       return {
@@ -54,6 +56,4 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
-
-export default reducer;
+}
